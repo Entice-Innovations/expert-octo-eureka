@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap");
+
+/* MAIN HEADER */
+
+.site-header {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+  background: #101010;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar {
+  width: 100%;
+  min-height: 100px;
+  padding: 0 6%;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  background: #101010;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* LEFT AND RIGHT LINKS */
+
+.nav-side {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-left {
+  justify-content: flex-start;
+}
+
+.nav-right {
+  justify-content: flex-end;
+}
+
+.nav-side a,
+.mobile-menu a {
+  position: relative;
+  color: #e8e4dc;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.nav-side a:not(.nav-book)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 1px;
+  background: #b08d57;
+  transition: width 0.3s ease;
+}
+
+.nav-side a:not(.nav-book):hover {
+  color: #c5a16a;
+}
+
+.nav-side a:not(.nav-book):hover::after {
+  width: 100%;
+}
+
+/* CENTRED LOGO */
+
+.navbar-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  display: block;
+  width: auto;
+  max-width: 175px;
+  height: 68px;
+  object-fit: contain;
+}
+
+/* LOGIN */
+
+.nav-login {
+  margin-left: 2px;
+}
+
+/* BOOK NOW BUTTON */
+
+.nav-side .nav-book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 22px;
+  background: #b08d57;
+  color: #101010;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav-side .nav-book:hover {
+  background: #e0c397;
+  color: #101010;
+}
+
+.nav-book span {
+  font-size: 16px;
+}
+
+/* MOBILE MENU BUTTON */
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 23px;
+  height: 1px;
+  margin: 7px auto;
+  background: #f4efe7;
+  transition: transform 0.3s ease;
+}
+
+.menu-toggle.active span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.menu-toggle.active span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* MOBILE MENU */
+
+.mobile-menu {
+  display: none;
+}
+
+/* TABLET */
+
+@media (max-width: 1050px) {
+  .navbar {
+    padding: 0 4%;
+  }
+
+  .nav-side {
+    gap: 19px;
+  }
+
+  .nav-side a {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .navbar-logo img {
+    max-width: 145px;
+  }
+
+  .nav-side .nav-book {
+    padding: 12px 15px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  .navbar {
+    min-height: 82px;
+    padding: 0 22px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-side {
+    display: none;
+  }
+
+  .navbar-logo {
+    justify-content: flex-start;
+  }
+
+  .navbar-logo img {
+    max-width: 145px;
+    height: 58px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  /*
+    Important:
+    The mobile menu stays in normal document flow.
+    It pushes the hero down instead of covering it.
+  */
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 8px 24px 25px;
+    background: #101010;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-menu a {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+  }
+
+  .mobile-menu a:hover {
+    color: #c5a16a;
+  }
+
+  .mobile-menu .mobile-book {
+    width: fit-content;
+    margin-top: 18px;
+    padding: 14px 22px;
+    border: 0;
+    background: #b08d57;
+    color: #101010;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-side a,
+  .nav-side a::after,
+  .menu-toggle span {
+    transition: none;
+  }
+}
