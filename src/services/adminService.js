@@ -8,6 +8,8 @@ export const API_URL = "http://localhost:5000";
 export const apiRequest = async (endpoint, options = {}) => {
   const adminToken = localStorage.getItem("adminToken");
 
+  console.log("Admin token exists:", Boolean(adminToken));
+
   const headers = { ...(options.headers || {}) };
 
   if (!(options.body instanceof FormData)) {
@@ -18,10 +20,14 @@ export const apiRequest = async (endpoint, options = {}) => {
     headers.Authorization = `Bearer ${adminToken}`;
   }
 
+  console.log("Authorization header exists:", Boolean(headers.Authorization));
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers,
   });
+
+  console.log("Response status:", response.status);
 
   let data;
 
@@ -32,9 +38,7 @@ export const apiRequest = async (endpoint, options = {}) => {
   }
 
   if (!response.ok) {
-    throw new Error(
-      data?.message || "Something went wrong. Please try again."
-    );
+    throw new Error(data?.message || "Something went wrong.");
   }
 
   return data;
